@@ -1,4 +1,7 @@
 <script setup>
+import Pagination from "@/Components/Pagination.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+
 const props = defineProps({
   categories: {
     type: Array,
@@ -25,25 +28,15 @@ const props = defineProps({
         <td class="border border-slate-300 p-4">{{ category.name }}</td>
         <td class="border border-slate-300 p-4 uppercase">{{ category.type }}</td>
         <td class="border border-slate-300 p-4">
-          <button>Edit</button>
-          <button>Delete</button>
+          <div class="flex gap-1">
+            <PrimaryButton :disabled="true">Edit</PrimaryButton>
+            <PrimaryButton :disabled="true">Delete</PrimaryButton>
+          </div>
         </td>
       </tr>
     </tbody>
   </table>
-  <nav aria-label="Page navigation example" v-if="props.pagination.total">
-    <ul class="pagination">
-      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-      <li
-        v-for="page in Math.ceil(props.pagination.total / props.pagination.per_page)"
-        :class="{active: props.pagination.current_page === page}"
-        class="page-item"
-      >
-        <a class="page-link" :href="'?page=' + page">{{ page }}</a>
-      </li>
-      <li class="page-item"><a class="page-link" href="#">Next</a></li>
-    </ul>
-  </nav>
+  <Pagination :pagination="props.pagination" />
 </template>
 
 <style scoped>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -37,6 +38,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
     Route::post('/categories', [CategoryController::class, 'store'])->name('category.store');
+
+    Route::get('/transactions', [TransactionController::class, 'index'])->name('transaction.index');
+    Route::post('/transactions', [TransactionController::class, 'store'])->name('transaction.store');
 });
 
 require __DIR__.'/auth.php';
